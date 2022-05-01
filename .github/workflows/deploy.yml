@@ -13,12 +13,12 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-        rm -rf soccer_bot_backend
-        git clone git@github.com:pzandre/soccer_bot_backend
-        cp python.env soccer_bot_backend
-        cd soccer_bot_backend
-        git submodule init
-        git submodule update
-        docker-compose stop
-        docker-compose build
-        docker-compose up -d
+          rm -rf soccer_bot_backend
+          git clone git@github.com:pzandre/soccer_bot_backend
+          cp python.env soccer_bot_backend
+          cd soccer_bot_backend
+          git submodule init
+          git submodule update
+          docker-compose stop
+          docker-compose build
+          docker-compose up -d
