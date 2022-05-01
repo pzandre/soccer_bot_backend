@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: soccerbot/python
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - python.env
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:5.0.8-alpine
+
+  celery-default:
+    image: soccerbot/python
+    command: /bin/bash -c "celery -A soccer_bot worker -l INFO -Q default"
+    volumes:
+      - .:/code
+    env_file:
+      - python.env
+    links:
+      - redis
+
+  celery-beat:
+    image: soccerbot/python
+    command: /bin/bash -c "celery -A soccer_bot beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile="
+    volumes:
+      - .:/code
+    env_file:
+      - python.env
+    depends_on:
+      - celery-default
+

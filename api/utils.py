@@ -1,10 +1,11 @@
 import redis
+from django.conf import settings
 
 
 class RedisContextManager:
     def __init__(self):
         pool = redis.ConnectionPool(
-            host="127.0.0.1", port=6379, db="0", decode_responses=True
+            host=settings.REDIS_HOSTNAME, port=settings.REDIS_PORT, db=settings.REDIS_CACHE_DB, decode_responses=True
         )
         self.r = redis.Redis(connection_pool=pool)
 
@@ -13,3 +14,4 @@ class RedisContextManager:
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.r.close()
+

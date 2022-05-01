@@ -160,3 +160,4 @@ cython_debug/
 .idea/
 dump.rdb
 nohup.out
+python.env
