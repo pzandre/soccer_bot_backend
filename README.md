@@ -1,8 +1,7 @@
-1. After downloading use `git submodule init` and `git submodule update`
-2. `pip install -r requirements.txt`
-3. `pip install pip install "uvicorn[standard]"`
-4. [Install redis](https://redis.io/docs/getting-started/) and make sure redis-server is running in port 6379
-5. Set environment variables `RAPIDAPI_HOST` and `RAPIDAPI_KEY`
-6. `uvicorn main:app --reload`
+You need [docker](https://docs.docker.com/get-docker/) and[docker-compose](https://docs.docker.com/compose/install/) to run this project.
 
-Application can now be accessed in localhost:8000
+1. After downloading use `git submodule init` and `git submodule update`
+2. Use `python.env.SAMPLE` to create a `python.env` file and set variable `RAPIDAPI_KEY`
+3. `docker-compose build && docker-compose run --rm web makemigrations && docker-compose run --rm web migrate`
+4. Use `docker-compose up` to run the project
+
