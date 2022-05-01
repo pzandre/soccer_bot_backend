@@ -13,7 +13,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          rm -rf soccer_bot_backend
+          sudo rm -rf soccer_bot_backend
           git clone git@github.com:pzandre/soccer_bot_backend
           cp python.env soccer_bot_backend
           cd soccer_bot_backend
