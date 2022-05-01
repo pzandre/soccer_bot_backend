@@ -21,4 +21,6 @@ jobs:
           git submodule update
           docker-compose stop
           docker-compose build
+          docker-compose run --rm web python manage.py makemigrations
+          docker-compose run --rm web python manage.py migrate
           docker-compose up -d

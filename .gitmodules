@@ -1,3 +1,4 @@
 [submodule "data_analysis_soccer"]
 	path = data_analysis_soccer
 	url = ../data_analysis_soccer
+	branch = django
